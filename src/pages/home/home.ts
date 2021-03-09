@@ -2,6 +2,7 @@ import { AuthService } from './../../services/auth.service';
 import { Component } from '@angular/core';
 import { IonicPage, MenuController, NavController } from 'ionic-angular';
 import { CredenciaisDTO } from '../../models/credenciais.dto';
+import { LoadingController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -17,7 +18,8 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,
     public menu: MenuController,
-    public auth: AuthService) {
+    public auth: AuthService,
+    public loadingCtrl: LoadingController) {
 
   }
 
@@ -49,5 +51,12 @@ export class HomePage {
   signup() {
     this.menu.swipeEnable(false);
     this.navCtrl.push('SignupPage');
+  }
+  presentLoading() {
+    const loader = this.loadingCtrl.create({
+      content: "Carregando seus dados",
+      duration: 13300
+    });
+    loader.present();
   }
 }
